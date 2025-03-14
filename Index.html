@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Calculadora de Presupuesto de Construcción</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        table { width: 60%; margin: auto; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        th { background-color: #f4f4f4; }
+        input { width: 80px; text-align: center; }
+    </style>
+</head>
+<body>
+    <h2>Calculadora de Presupuesto</h2>
+    <table>
+        <tr>
+            <th>Descripción</th>
+            <th>Precio Unitario (€)</th>
+            <th>Unidades</th>
+            <th>Subtotal (€)</th>
+        </tr>
+        <tr>
+            <td>Movimiento de tierras (m3)</td>
+            <td>75</td>
+            <td><input type="number" class="unidad" data-precio="75" oninput="calcular()"></td>
+            <td class="subtotal">0</td>
+        </tr>
+        <tr>   
+            <td>Cimentación (90kg/m3)</td>
+            <td>385</td>
+            <td><input type="number" class="unidad" data-precio="385" oninput="calcular()"></td>
+            <td class="subtotal">0</td>
+        </tr>
+        <tr>
+            <td>Estructura (m2)</td>
+            <td>150</td>
+            <td><input type="number" class="unidad" data-precio="150" oninput="calcular()"></td>
+            <td class="subtotal">0</td>
+        </tr>
+        <tr>
+            <td>Saneamiento (m2)</td>
+            <td>62</td>
+            <td><input type="number" class="unidad" data-precio="62" oninput="calcular()"></td>
+            <td class="subtotal">0</td>
+        </tr>
+        <tr>
+            <td>Albañilería (m2)</td>
+            <td>148</td>
+            <td><input type="number" class="unidad" data-precio="148" oninput="calcular()"></td>
+            <td class="subtotal">0</td>
+	    <tr>
+        <tr>
+            <td>Cubierta (m2)</td>
+            <td>85</td>
+            <td><input type="number" class="unidad" data-precio="85" oninput="calcular()"></td>
+            <td class="subtotal">0</td>
+         <tr>
+        <tr>
+             <td>Aislamientos e impermeabilizaciones (m2)</td>
+             <td>47</td>
+            <td><input type="number" class="unidad" data-precio="47" oninput="calcular()"></td>
+            <td class="subtotal">0</td>
+        <tr>
+        <tr>
+            <td>Revestimientos (m2)</td>
+             <td>290</td>
+            <td><input type="number" class="unidad" data-precio="290" oninput="calcular()"></td>
+             <td class="subtotal">0</td>
+         <tr>
+        <tr>
+   	         <td> Fontanería y aparatos (m2)</td>
+   	         <td>64</td>
+   	         <td><input type="number" class="unidad" data-precio="64" oninput="calcular()"></td>
+   	         <td class="subtotal">0</td>
+	    </tr>
+	    </tr>
+            <td>Instalaciones eléctricas y audiovisuales (m2)</td>
+            <td>47</td>
+            <td><input type="number" class="unidad" data-precio="47" oninput="calcular()"></td>
+            <td class="subtotal">0</td>
+        </tr>
+        <tr>
+            <td>Carpintería PVC y vidrios (m2)</td>
+            <td>0</td>
+            <td><input type="number" class="unidad" data-precio="0" oninput="calcular()"></td>
+            <td class="subtotal">0</td>
+       
+        </tr>
+        </tr>
+            <td>Carpintería metálica y cerrajería (m2)</td>
+            <td>0</td>
+            <td><input type="number" class="unidad" data-precio="0" oninput="calcular()"></td>
+            <td class="subtotal">0</td>
+        </tr>
+        </tr>
+            <td>Pinturas (m2)</td>
+            <td>30</td>
+            <td><input type="number" class="unidad" data-precio="30" oninput="calcular()"></td>
+            <td class="subtotal">0</td>
+        </tr>
+        </tr>
+            <td>Varios (m2)</td>
+            <td>32</td>
+            <td><input type="number" class="unidad" data-precio="32" oninput="calcular()"></td>
+            <td class="subtotal">0</td> 
+        </tr>
+        </tr>
+            <td>Urbanización (m2)</td>
+            <td>0</td>
+            <td><input type="number" class="unidad" data-precio="0" oninput="calcular()"></td>
+            <td class="subtotal">0</td> 
+    </tr>
+    <tr> 
+            <td colspan="3"><strong>Total (€)</strong></td>
+            <td id="total">0</td>
+    </tr>
+    </table>
+    
+    <script>
+        function calcular() {
+            let total = 0;
+            let filas = document.querySelectorAll(".unidad");
+            filas.forEach((input, index) => {
+                let precio = parseFloat(input.getAttribute("data-precio"));
+                let unidades = parseFloat(input.value) || 0;
+                let subtotal = precio * unidades;
+                document.querySelectorAll(".subtotal")[index].innerText = subtotal.toFixed(2);
+                total += subtotal;
+            });
+            document.getElementById("total").innerText = total.toFixed(2);
+        }
+    </script>
+    
+    </body>
+    </html>
+    
